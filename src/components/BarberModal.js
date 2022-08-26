@@ -6,7 +6,7 @@ import ExpandIcon from '../assets/expand.svg';
 import NavPrevIcon from '../assets/nav_prev.svg';
 import NavNextIcon from '../assets/nav_next.svg';
 
-import Api from '../../Api';
+import Api from '../Api';
 
 
 const Modal = styled.Modal``;

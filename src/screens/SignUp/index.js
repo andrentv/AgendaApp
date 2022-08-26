@@ -23,7 +23,7 @@ import EmailIcon from '../../assets/email.svg';
 import LockIcon from '../../assets/lock.svg';
 
 export default () => {
-    const { dispatch: userDispatch } = useContext(UserContext);
+   // const { dispatch: userDispatch } = useContext(UserContext);
     const navigation = useNavigation();
 
     const [nameField, setNameField] = useState('');
@@ -32,7 +32,14 @@ export default () => {
 
     const handleSignClick = async () => {
         if (nameField != '' && emailField != '' && passwordField != '') {
-
+						let res = await Api.signUp(nameField, emailField, passwordField);
+						console.log(res);
+						
+        		if(res.token) {
+        				alert("Deu Certo!");
+        		} else {
+        				alert("Erro: "+res.error);
+        				}
         } else {
             alert("Preencha os campos");
         }

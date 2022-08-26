@@ -23,7 +23,7 @@ import EmailIcon from '../../assets/email.svg';
 import LockIcon from '../../assets/lock.svg';
 
 export default () => {
-    const { dispatch: userDispatch } = useContext(UserContext);
+  //  const { dispatch: userDispatch } = useContext(UserContext);
     const navigation = useNavigation();
 
     const [emailField, setEmailField] = useState('');
@@ -33,20 +33,20 @@ export default () => {
         if (emailField != '' && passwordField != '') {
 
             let json = await Api.signIn(emailField, passwordField);
-
+							console.log(json);
             if (json.token) {
-                await AsyncStorage.setItem('token', json.token);
+           //     await AsyncStorage.setItem('token', json.token);
 
-                userDispatch({
-                    type: 'setAvatar',
-                    payload: {
-                        avatar: json.data.avatar
-                    }
-                });
+          //      userDispatch({
+          //          type: 'setAvatar',
+          //          payload: {
+          //              avatar: json.data.avatar
+          //          }
+           //     });
 
-                navigation.reset({
-                    routes: [{ name: 'MainTab' }]
-                });
+           //     navigation.reset({
+           //         routes: [{ name: 'MainTab' }]
+         //       });
             } else {
                 alert('E-mail e/ou senha errados!');
             }
@@ -95,3 +95,4 @@ export default () => {
         </Container>
     );
 }
+
