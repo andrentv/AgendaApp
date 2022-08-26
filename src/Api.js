@@ -1,12 +1,13 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { add } from 'react-native-reanimated';
+import { API_URL } from '@env';
 
-const BASE_API = 'http://localhost:3333';
+const BASE_API = process.env.API_URL;
 
 export default {
  //auth/refresh
     checkToken: async (token) => {
-        const req = await fetch(`${BASE_API}/users`, {
+        const req = await fetch(`${BASE_API}/auth/refresh`, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -19,10 +20,10 @@ export default {
     },
     //auth/refresh
     signIn: async (email, password) => {
-    		console.log("URL", `${BASE_API}/users`);
-    		console.log("BODY", JSON.stringify({ email, password }));
-    		console.log("password", password);
-        const req = await fetch(`${BASE_API}/users`, {
+    		//console.log("URL", `${BASE_API}/login`);
+    		//console.log("BODY", JSON.stringify({ email, password }));
+    		//console.log("password", password);
+        const req = await fetch(`${BASE_API}/login`, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -34,10 +35,10 @@ export default {
         return json;
     },
     signUp: async (name, email, password) => {
-    		console.log("URL", `${BASE_API}/users`);
+    		//console.log("URL", `${BASE_API}/user`);
     		console.log("BODY", JSON.stringify({ email, password, name }));
-    		console.log("password", password);
-        const req = await fetch(`${BASE_API}/users`, {
+    		//console.log("password", password);
+        const req = await fetch(`${BASE_API}/user`, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -52,7 +53,7 @@ export default {
     logout: async () => {
         const token = await AsyncStorage.getItem('token');
 
-        const req = await fetch(`${BASE_API}/users`, {
+        const req = await fetch(`${BASE_API}/login`, {
 
             method: 'POST',
             headers: {
